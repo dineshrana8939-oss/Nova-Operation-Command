@@ -1,4 +1,4 @@
-// ─── Auto-generated catalog of 41 extra minigames from D:\\html\\games ───
+// ─── Auto-generated catalog of 41 extra minigames ───
 export const extraGames = {};
 
 const MG = {

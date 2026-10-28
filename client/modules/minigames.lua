@@ -34,7 +34,7 @@ local ALL_GAMES = {
     -- Extended pack (original 9)
     'thermite', 'lasergrid', 'forge', 'archery', 'parry',
     'cuttheright', 'decrypt', 'vaultdrill', 'pickpocket',
-    -- Additional games from D:\html (41 new games, 70 total)
+    -- Additional games (41 new games, 70 total)
     'animus', 'beltsort', 'bluff', 'bonepin', 'breathalyzer', 'cashcount',
     'chopshop', 'cooking', 'counterfeit', 'crafting', 'crane', 'daemonrun',
     'dataheist', 'deadcalm', 'diving', 'drilling', 'eaglevision', 'fishing',
