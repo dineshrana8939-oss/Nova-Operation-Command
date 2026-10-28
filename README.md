@@ -6,6 +6,18 @@
 Admins create and run events from an in-game tablet. Players join as police, gang members or civilians. The script
 handles announcements, rewards, gang XP, leaderboards, PDF after-action reports and Discord logs.
 
+1. Convoy Truck Event – Police vs. Gangs
+A short walkthrough demonstrating the creation and gameplay of the Convoy Truck event, featuring a battle between the police and gangs.
+Watch : https://streamable.com/prc7fg
+
+2. Airdrop Event
+A short walkthrough demonstrating the creation and functionality of the Airdrop event.
+Watch : https://streamable.com/zalzir
+
+3. Container War Event
+A short walkthrough demonstrating the creation and functionality of the Container War event.
+Watch : https://streamable.com/5pda1k
+
 ## Events
 
 | Event | What happens |
