@@ -90,5 +90,7 @@ See [ADDON_VEHICLES.md](ADDON_VEHICLES.md).
 ## Credits & license
 
 - Script by **Dinesh**. All rights reserved. See [LICENSE](LICENSE).
-- Prebuilt race tracks in `data/tracks/` come from Dking07/fivem-tracks. See `data/tracks/CREDITS.md`.
+- **Race tracks:** the 117 prebuilt Rally Race tracks in `data/tracks/` are made by **[Dking07](https://github.com/Dking07)**,
+  from [Dking07/fivem-tracks](https://github.com/Dking07/fivem-tracks). They are included unchanged, and all credit for
+  them goes to Dking07. See `data/tracks/CREDITS.md`.
 - The interface bundles third-party libraries (Svelte, Leaflet, Inter font) under their own licenses.
