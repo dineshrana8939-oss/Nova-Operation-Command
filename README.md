@@ -1,5 +1,7 @@
 # Nova Operation Command (nova_convoytruck)
 
+![Nova Operations Hub](.github/assets/cover.jpg)
+
 **Operations Hub**: a configurable live-event system for FiveM roleplay servers running **Qbox, QB-Core or ESX**.
 Admins create and run events from an in-game tablet. Players join as police, gang members or civilians. The script
 handles announcements, rewards, gang XP, leaderboards, PDF after-action reports and Discord logs.
