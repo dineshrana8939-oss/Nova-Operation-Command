@@ -1,0 +1,12 @@
+Copyright (c) 2026 Dinesh. All rights reserved.
+
+nova_convoytruck (Operations Hub) is the work of Dinesh, who is its owner and sole author.
+
+No part of this resource may be copied, modified, redistributed, sold or published
+without the written permission of Dinesh.
+
+Not covered by this licence (these belong to their own authors and keep their own terms):
+  - data/tracks/        prebuilt race tracks, see data/tracks/CREDITS.md
+  - html/ and web/node_modules/   third-party libraries bundled into the interface
+                        (Svelte, Leaflet and the other packages listed in web/package.json)
+  - Grand Theft Auto V / FiveM / ox_lib and the other resources this script talks to.

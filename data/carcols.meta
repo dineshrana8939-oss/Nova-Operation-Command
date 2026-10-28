@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CVehicleModelInfoVarGlobal>
+	<Kits>
+		<!-- Paste your vehicle's <Item> livery/wheel-kit block(s) here, if it has one. -->
+	</Kits>
+	<Lights>
+		<!-- Paste your vehicle's <Item> light-settings block here, if it has one. -->
+	</Lights>
+</CVehicleModelInfoVarGlobal>

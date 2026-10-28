@@ -1,0 +1,276 @@
+/* ─── Nova Convoy — Field Dispatch Theme ──────────────────────────────────────── */
+/* Graphite operations terminal (reference: _ui_preview/dashboard):
+   Bezel #0c0d0f, Base #131518, Panel #181b1f, Raised #1f2328 (hover #272b31),
+   Line #2a2e35, Line-soft #1f2328, Primary blue #4f94e6, Live red #ff5d50,
+   Warn amber #f2a93b, Success #46c98b. Barlow for UI, Barlow Condensed for
+   headings and numbers. 3–4px corners, no glow, no gradients, no drop shadows.
+   Event kinds keep their own colours (lib/hud/eventThemes.js). */
+
+:root {
+  /* Design-system tokens (new names; legacy names below map onto these) */
+  --c-bezel: #0c0d0f;
+  --c-base: #131518;
+  --c-panel: #181b1f;
+  --c-raised: #1f2328;
+  --c-hover: #272b31;
+  --c-line: #2a2e35;
+  --c-line-soft: #1f2328;
+  --c-text: #eceef0;
+  --c-text-2: #b8bec5;
+  --c-text-3: #8d949c;
+  --c-action: #4f94e6;
+  --c-action-hover: #66a3eb;
+  --c-live: #ff5d50;
+  --c-warn: #f2a93b;
+  --c-ok: #46c98b;
+  --c-sched: #7aa7dc;
+  /* Dialog / popup surface: the tablet frame's blue-grey gradient, kept opaque so text stays readable.
+     Every modal, confirm box, drawer and floating window uses this so they all match the tablet. */
+  --surface-dialog:
+    radial-gradient(ellipse 130% 85% at 50% 0%, rgba(62, 86, 116, 0.46) 0%, rgba(20, 28, 40, 0) 72%),
+    linear-gradient(180deg, #18212d 0%, #111821 52%, #0b0f16 100%);
+  --surface-dialog-bar: linear-gradient(180deg, rgba(34, 48, 68, 0.5) 0%, rgba(12, 17, 25, 0.55) 100%);
+  --border-dialog: rgba(110, 140, 180, 0.3);
+  /* Corner scale ("Round" preset). Outer > inner so nesting stays clean:
+     frame 20 > panels/cards 12 > buttons/inputs/tabs 8 > tags/badges/chips 6. */
+  --r-xs: 6px;
+  --r-tag: 6px;
+  --r-ctl: 8px;
+  --r-panel: 12px;
+  --r-frame: 20px;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --h-ctl-sm: 30px;
+  --h-ctl: 36px;
+  --h-input: 38px;
+  --t-fast: 0.12s;
+  --t-base: 0.15s;
+  --z-dropdown: 100;
+  --z-overlay: 1000;
+  --z-modal: 5000;
+  --z-toast: 6000;
+
+  /* Master palette */
+  --accent-primary: #4f94e6;
+  --accent-primary-rgb: 79, 148, 230;
+  --accent-primary-light: #66a3eb;
+  --accent-primary-dim: #2f6db5;
+  --accent-glow: rgba(79, 148, 230, 0.3);
+  --accent-dim: rgba(79, 148, 230, 0.12);
+  --accent-border: rgba(79, 148, 230, 0.5);
+  --yellow: #ffc857;
+  --yellow-rgb: 255, 200, 87;
+  --green: #46c98b;
+  --green-glow: rgba(70, 201, 139, 0.3);
+  --green-dim: rgba(70, 201, 139, 0.12);
+  --red: #e5524a;
+  --red-rgb: 229, 82, 74;
+  --panel-bg: #181b1f;
+  --panel-border: #2a2e35;
+  --panel-glow: rgba(0, 0, 0, 0.35);
+  --text-main: #eceef0; /* primary text & headings */
+  --text-label: #e3e6e9; /* form labels & card headings */
+  --text-dim: #c9ced4; /* secondary text, column headers, timestamps */
+  --text-muted: #aeb5bd; /* descriptions, helper copy, hint text */
+  --text-placeholder: #858d96; /* input placeholders */
+  --text-faint: #959ca5; /* faint secondary markers */
+
+  /* Master surfaces — dark matte game/admin UI */
+  --bg-base: #131518;
+  --bg-surface: #15171b;
+  --bg-card: #181b1f;
+  --bg-card-raised: #1c1f24;
+  --bg-card-hover: #1f2328;
+  --tablet-bg: #131518;
+  --tablet-panel: #181b1f;
+  --tablet-panel-alt: #15171b;
+  --tablet-border: #2a2e35;
+  --tablet-border-strong: #363b43;
+  --tablet-border-hover: #434951;
+  --tablet-text-faint: #aeb5bd;
+  --tablet-danger: var(--red);
+  --tablet-warn: var(--yellow);
+  --tablet-success: var(--green);
+
+  /* Master input surfaces — dark bluish matte tone */
+  --input-bg: #121418;
+  --input-bg-hover: #15181c;
+  --input-bg-focus: #171a1f;
+  --input-border: #2e333a;
+  --input-border-hover: #3a4048;
+  --input-focus-border: #4f94e6;
+
+  /* Master shadow */
+  --shadow-soft: none;
+  --shadow-overlay: 0 16px 40px rgba(0, 0, 0, 0.55); /* floating layers only: modals, dropdowns */
+  --inset-highlight: none;
+
+  /* per-tab accent colors — unified to primary blue */
+  --accent-dashboard: var(--accent-primary);
+  --accent-convoys: var(--accent-primary);
+  --accent-create: var(--accent-primary);
+  --accent-active: var(--accent-primary);
+  --accent-completed: var(--accent-primary);
+  --accent-gangs: var(--accent-primary);
+  --accent-leaderboard: var(--accent-primary);
+  --accent-settings: var(--accent-primary);
+  --accent-announcements: var(--accent-primary);
+  --accent-participants: var(--accent-primary);
+  --accent-savedroutes: var(--accent-primary);
+  --accent-tournaments: var(--accent-primary);
+
+  /* Frame & layout surfaces */
+  --app-frame: #131518;
+  --topbar-bg: #15171b;
+  --sidebar-bg: #111316;
+  --sidebar-bottom-bg: #0f1113;
+  --card-bg: #181b1f;
+  --header-bg: #15171b;
+  --form-bg: #181b1f;
+  --steps-bg: #15171b;
+  --doctrine-bar-bg: #15171b;
+  --doctrine-card-bg: #181b1f;
+  --doctrine-card-hover: #1f2328;
+  --doctrine-card-active: #272b31;
+
+  /* Typography — one family (Instrument Sans), three roles:
+       --font-display  headings, big numbers, timers (≥18px) — set with
+                       font-stretch: var(--stretch-display) for a tighter cut
+       --font-ui/body  everything readable at small sizes (normal width)
+       --font-mono     the DATA role: same face + tabular figures for IDs, coords,
+                       timestamps and counts, never narrowed at small sizes.
+     Event-branded faces (AirdropMarker → Rajdhani) are set locally and never here. */
+  --font-display: 'Instrument Sans', 'Segoe UI', Arial, sans-serif;
+  --font-ui: 'Instrument Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  --font-body: 'Instrument Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Instrument Sans', 'Segoe UI', Arial, sans-serif;
+  /* the display role = same family, narrowed via its width axis */
+  --stretch-display: 88%;
+
+  /* Type scale (tablet + Event Hub). Same role → same token, everywhere. */
+  --fs-meta: 12.5px;      /* timestamps, hints, table headers, badges */
+  --fs-small: 13.5px;     /* secondary copy, labels, compact buttons, tabs */
+  --fs-body: 14.5px;      /* body, inputs, table rows, buttons */
+  --fs-emph: 16px;        /* emphasised values, sub-section heads */
+  --fs-title: 19px;       /* panel / card titles (display face) */
+  --fs-section: 24px;     /* section headings (display face) */
+  --fs-page: 30px;        /* page titles (display face) */
+  /* One table density everywhere: header and row padding come from here (rows use --fs-body, headers --fs-meta). */
+  --tbl-th-y: 9px;
+  --tbl-td-y: 8px;
+  --tbl-x: 14px;
+  --lh-tight: 1.15;
+  --lh-body: 1.45;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Typography hierarchy */
+  --fw-heading: 700;
+  --fw-nav: 500;
+  --fw-value: 600;
+  --fw-body: 400;
+
+  /* Button system — matte solid colors matching Player Admin:
+     Primary = Blue #4f94e6, Secondary/Utility = #1f2328 (hover #272b31), Danger = #ff5d50 */
+  --metal-gold: #4f94e6;
+  --metal-gold-hover: #66a3eb;
+  --metal-bronze: #1f2328;
+  --metal-bronze-hover: #272b31;
+  --metal-steel: #1f2328;
+  --metal-steel-hover: #272b31;
+  --metal-gold-text: #0b1522;
+  --metal-edge-gold: #4f94e6;
+  --metal-edge-bronze: #2a2e35;
+  --metal-edge-steel: #2a2e35;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent !important;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  /* tabular digits so timers/counters don't jitter */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+  color: var(--text-main);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+button {
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+/* FiveM's CEF reports mouse clicks as :focus-visible, so a button focus ring
+   showed as a blue outline on whatever was last clicked (e.g. the active
+   sidebar item). The NUI is mouse-driven: buttons get no ring; text inputs
+   keep their own focus border styling. */
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+input,
+textarea,
+select {
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2e35;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4048;
+}
+
+/* while a theme is being switched no transition runs (see applyThemeQuietly in lib/theme/appearance.js) */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}

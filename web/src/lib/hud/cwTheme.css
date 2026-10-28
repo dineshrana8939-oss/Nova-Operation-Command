@@ -1,0 +1,83 @@
+/* ── Container Wars: one visual language for every player-facing screen of the event ───────────────────────────────────────
+   The bidder, the tags over containers, the zone timer, the civilian info panel and the reward-vehicle tag all read as parts of
+   the same thing: the side of a shipping container in a harbour yard.
+     · hull steel with fine vertical ribs (corrugation), corner castings, a yellow/black hazard strip
+     · Bahnschrift (the DIN-style signage face that ships with Windows) in condensed capitals for numbers and lot IDs
+     · ONE accent, the harbour green the event already uses everywhere else; hazard yellow is for money, orange for time, steel blue for gangs
+   No glow, no gradient wash, no blur: the ribs and the strip are small flat images. */
+
+:root {
+  --cw-hull: #131916;
+  --cw-hull-2: #1b2420;
+  --cw-line: rgba(214, 232, 220, 0.2);
+  --cw-line-soft: rgba(214, 232, 220, 0.1);
+  --cw-text: #eef3ec;
+  --cw-dim: #8fa097;
+  --cw-green: #52d24a;
+  --cw-yellow: #f2c230;
+  --cw-orange: #ec7a36;
+  --cw-blue: #7fb2d6;
+  --cw-red: #e5534b;
+  --cw-display: 'Bahnschrift', 'Segoe UI Semibold', 'Arial Narrow', 'Roboto Condensed', var(--font-ui), sans-serif;
+
+  /* corrugation: a 1.4px rib every 9px */
+  --cw-ribs: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='9'><rect width='1.4' height='9' fill='white' fill-opacity='0.04'/></svg>");
+  /* hazard strip: yellow bands on a dark base, 12px period */
+  --cw-hazard: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='5'><rect width='12' height='5' fill='rgb(19,25,22)'/><path d='M0 5 L5 0 L11 0 L6 5Z' fill='rgb(242,194,48)'/></svg>");
+  /* corner casting: a small block with a lashing hole */
+  --cw-cast: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='9' height='9'><rect x='.5' y='.5' width='8' height='8' fill='rgb(10,14,12)' stroke='rgb(78,94,84)'/><circle cx='4.5' cy='4.5' r='1.5' fill='rgb(44,54,48)'/></svg>");
+}
+
+/* the plate every panel is made of */
+.cw-plate {
+  position: relative;
+  box-sizing: border-box;
+  background-color: var(--cw-hull);
+  background-image: var(--cw-ribs);
+  border: 1px solid var(--cw-line);
+  border-radius: 3px;
+  color: var(--cw-text);
+}
+.cw-plate *, .cw-plate *::before, .cw-plate *::after { box-sizing: border-box; }
+.cw-plate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--cw-cast), var(--cw-cast), var(--cw-cast), var(--cw-cast);
+  background-repeat: no-repeat;
+  background-position: left 3px top 8px, right 3px top 8px, left 3px bottom 3px, right 3px bottom 3px;
+}
+
+.cw-strip {
+  height: 5px;
+  background-image: var(--cw-hazard);
+  background-size: 12px 5px;
+}
+
+/* small capital label */
+.cw-kicker {
+  font-family: var(--cw-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cw-dim);
+}
+
+/* a key cap, as stencilled on a plate */
+.cw-key {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border: 1px solid var(--cw-dim);
+  border-radius: 2px;
+  background: var(--cw-hull-2);
+  color: var(--cw-text);
+  font-family: var(--cw-display);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}

@@ -1,0 +1,25 @@
+# Dependencies / build tooling
+web/node_modules/
+node_modules/
+*.map
+build.log
+*.log
+
+# Backups and archives
+_ui_backup/
+_ui_preview/
+legacy_archive/
+web/src/_archive/
+
+# Runtime output written by the script
+data/tournament_exports_*
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.bak
+*.tmp
+*~

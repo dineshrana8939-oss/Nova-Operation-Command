@@ -1,0 +1,221 @@
+/* ─── Nova Convoy — the flat design layer (Gang Tablet + Admin Panel) ──────────────────────────────────────────────────
+   One shared look for both windows, driven by the tokens lib/theme/appearance.js writes on each window's root
+   ([data-ui-scope="admin"|"gang"]): three themes (Black + White, Black + Blue, White + Black), Inter, flat surfaces, rectangular
+   buttons and toggles, no glow, no gradients on controls, a visible focus ring.
+
+   Why this is a separate layer and not an edit of every component: ~100 components carry their own scoped CSS written in the
+   rounded / glowing era. Rules here are scoped under [data-ui-scope][data-ui-scope] and written one level more specific than a component rule
+   (".btn.btn-danger", ":is(...)") and the scope attribute is written twice ([data-ui-scope][data-ui-scope]): Svelte emits a component rule as .a.b.svelte-x.svelte-x, so one extra level is what makes a rule here win. !important is used ONLY in blocks 1 and 3 (shadows, gradients and corner
+   radii of controls, the toggle shape), because there is no other way to cancel 200+ scattered declarations. */
+
+/* ── Inter, bundled (the NUI cannot depend on a web font being reachable) ── */
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('../../node_modules/@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ── Type: one family, a short scale, tabular numbers ── */
+[data-ui-scope][data-ui-scope] {
+  font-family: var(--font-ui);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  color: var(--text-main);   /* body sets its colour from the page-level token: re-resolve it inside the window, or the White theme inherits light text */
+  -webkit-font-smoothing: antialiased;
+}
+[data-ui-scope][data-ui-scope] :is(button, input, select, textarea) { font-family: inherit; }
+[data-ui-scope][data-ui-scope] :is(table, td, th, .num, .kpi-value) { font-variant-numeric: tabular-nums; }
+
+/* ── Block 1: the !important block — no glow, no gradient on controls, rectangular corners ── */
+[data-ui-scope][data-ui-scope] *,
+[data-ui-scope][data-ui-scope] *::before,
+[data-ui-scope][data-ui-scope] *::after { text-shadow: none !important; }
+
+[data-ui-scope][data-ui-scope] :is(button, [role='button'], [role='tab'], [role='switch'], input:not([type='range']), select, textarea, .btn, [class*='-btn'], [class*='btn-']) {
+  box-shadow: none !important;
+  background-image: none !important;
+  filter: none !important;
+}
+[data-ui-scope][data-ui-scope] :is(button, [role='button'], [role='tab'], select, textarea, input:not([type='radio']):not([type='checkbox']):not([type='range']):not([type='color'])) {
+  border-radius: var(--r-ctl) !important;
+}
+/* cards, panels, drawers, popups: flat surface, no blur, at most a neutral depth shadow (never a coloured halo) */
+[data-ui-scope][data-ui-scope] :is(.panel, .card, [class$='-card'], .drawer, .modal, [role='dialog'], .popover, .dropdown, .menu) {
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+[data-ui-scope][data-ui-scope] :is(.modal, [role='dialog'], .drawer, .popover, .dropdown) { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28) !important; }
+
+/* ── Block 2: buttons — ONE family. Shape first, then three looks, all taken from the active theme (no punchy colours):
+     soft    (every button by default: edit, clone, announce, teleport, insert, up / down, cancel...) a muted shade of the theme's accent
+     primary (the main action: start, reuse, save, create, preview, open) the theme's accent, solid
+     danger  (delete, force end, remove) a muted red, solid
+   The colours carry !important because ~40 pages still hold their own tinted / dark-on-hover button rules (a hovered button used to turn
+   black on black); the text colour is set in EVERY state so a button can never hide its own label. ── */
+[data-ui-scope][data-ui-scope] :is(.btn, .ex-btn, .ap-btn, .row-btn) {
+  min-height: 34px;
+  padding: 0 14px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: none;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+[data-ui-scope][data-ui-scope] :is(.btn-xs, .btn-mini, .ex-btn, .row-btn) { min-height: 28px; padding: 0 10px; font-size: var(--fs-meta); }
+[data-ui-scope][data-ui-scope] .btn.btn-sm { min-height: 30px; padding: 0 11px; }
+
+/* soft */
+[data-ui-scope][data-ui-scope] :is(.btn, .ex-btn, .ap-btn, .row-btn, .icon-btn, .icon-btn-mini, .icon-btn-text, .btn-teleport, .btn-icon, .btn-edit, .btn-catalog, .btn-placement, .btn-placement-mode, .btn-move, .tb-move, .btn-insert, .btn-setpos) {
+  background: var(--btn-soft, var(--c-raised)) !important;
+  border: 1px solid var(--btn-soft-line, var(--c-line)) !important;
+  color: var(--text-main) !important;
+  font-weight: 600;
+}
+[data-ui-scope][data-ui-scope] :is(.btn, .ex-btn, .ap-btn, .row-btn, .icon-btn, .icon-btn-mini, .icon-btn-text, .btn-teleport, .btn-icon, .btn-edit, .btn-catalog, .btn-placement, .btn-placement-mode, .btn-move, .tb-move, .btn-insert, .btn-setpos):hover:not(:disabled) {
+  background: var(--btn-soft-hover, var(--c-hover)) !important;
+  border-color: var(--btn-soft-line, var(--tablet-border-hover)) !important;
+  color: var(--text-main) !important;
+}
+
+/* primary */
+[data-ui-scope][data-ui-scope] :is(.btn.btn-primary, .ap-btn.primary, .btn.btn-success, .btn.btn-create, .btn.btn-add, .btn.btn-confirm, .btn.btn-approve, .btn.btn-save,
+  .btn.btn-preview, .btn.btn-info, .btn.btn-blue-action, .ex-btn.ex-start, .ex-btn.ex-reuse, .row-btn.edit) {
+  background: var(--c-action) !important;
+  border-color: var(--c-action) !important;
+  color: var(--on-accent) !important;
+}
+[data-ui-scope][data-ui-scope] :is(.btn.btn-primary, .ap-btn.primary, .btn.btn-success, .btn.btn-create, .btn.btn-add, .btn.btn-confirm, .btn.btn-approve, .btn.btn-save,
+  .btn.btn-preview, .btn.btn-info, .btn.btn-blue-action, .ex-btn.ex-start, .ex-btn.ex-reuse, .row-btn.edit):hover:not(:disabled) { background: var(--c-action-hover) !important; border-color: var(--c-action-hover) !important; color: var(--on-accent) !important; }
+
+/* danger */
+[data-ui-scope][data-ui-scope] :is(.btn.btn-danger, .btn.btn-outline-danger, .btn.btn-red-action, .btn.btn-delete, .ex-btn.ex-danger, .row-btn.danger, .icon-btn.danger, .icon-btn-mini.danger) {
+  background: var(--act-danger) !important; border-color: var(--act-danger) !important; color: var(--act-danger-ink, #ffffff) !important;
+}
+[data-ui-scope][data-ui-scope] :is(.btn.btn-danger, .btn.btn-outline-danger, .btn.btn-red-action, .btn.btn-delete, .ex-btn.ex-danger, .row-btn.danger, .icon-btn.danger, .icon-btn-mini.danger):hover:not(:disabled) { filter: brightness(1.12) !important; color: var(--act-danger-ink, #ffffff) !important; }
+
+/* the icons inside a button take its text colour */
+[data-ui-scope][data-ui-scope] :is(.btn, .ex-btn, .ap-btn, .row-btn, .icon-btn, .icon-btn-mini, .icon-btn-text, .btn-teleport, .btn-icon, .btn-edit, .btn-catalog, .btn-placement, .btn-placement-mode, .btn-move, .tb-move, .btn-insert, .btn-setpos) :is(svg, i, span) { color: inherit; }
+
+/* disabled: a grey slab, never a dimmed colour */
+[data-ui-scope][data-ui-scope] :is(.btn, .ex-btn, .ap-btn, .row-btn, .icon-btn, .icon-btn-mini, .icon-btn-text, .btn-teleport, .btn-icon, .btn-edit, .btn-catalog, .btn-placement, .btn-placement-mode, .btn-move, .tb-move, .btn-insert, .btn-setpos):disabled,
+[data-ui-scope][data-ui-scope] :is(.btn, .ex-btn, .ap-btn, .row-btn, .icon-btn, .icon-btn-mini, .icon-btn-text, .btn-teleport, .btn-icon, .btn-edit, .btn-catalog, .btn-placement, .btn-placement-mode, .btn-move, .tb-move, .btn-insert, .btn-setpos)[aria-disabled='true'],
+[data-ui-scope][data-ui-scope] :is(.btn.btn-primary, .ap-btn.primary, .btn.btn-success, .btn.btn-create, .btn.btn-add, .btn.btn-confirm, .btn.btn-approve, .btn.btn-save,
+  .btn.btn-preview, .btn.btn-info, .btn.btn-blue-action, .ex-btn.ex-start, .ex-btn.ex-reuse, .row-btn.edit):disabled,
+[data-ui-scope][data-ui-scope] :is(.btn.btn-danger, .btn.btn-outline-danger, .btn.btn-red-action, .btn.btn-delete, .ex-btn.ex-danger, .row-btn.danger, .icon-btn.danger, .icon-btn-mini.danger):disabled {
+  background: var(--c-raised) !important; border-color: var(--c-line) !important; color: var(--text-faint) !important; opacity: 0.55; cursor: not-allowed; filter: none !important;
+}
+
+/* ── Block 3: toggles — a rectangular track and a square knob, grey OFF, the theme's colour ON ── */
+[data-ui-scope][data-ui-scope] [role='switch'] {
+  border-radius: 4px !important;
+  border: 1px solid var(--tablet-border-strong, var(--c-line));
+  background: var(--c-raised);
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+[data-ui-scope][data-ui-scope] [role='switch'][aria-checked='true'] { background: var(--toggle-on); border-color: var(--toggle-on); }
+[data-ui-scope][data-ui-scope] [role='switch'] > * { border-radius: 3px !important; box-shadow: none !important; }
+
+/* ── Block 4: inputs and focus ── */
+[data-ui-scope][data-ui-scope] :is(input:not([type='checkbox']):not([type='radio']):not([type='range']), select, textarea) {
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: var(--fs-body);
+}
+[data-ui-scope][data-ui-scope] :is(input, select, textarea)::placeholder { color: var(--text-placeholder); }
+[data-ui-scope][data-ui-scope] :is(button, a, [role='switch'], [role='tab'], input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ── Block 5: navigation — one colour (the theme's), not one per menu group ── */
+/* the group colours are written inline on each tab (style="--g: ..."), so overriding the variable needs !important */
+[data-ui-scope][data-ui-scope] :is(.gtab, .pages) { --g: var(--c-action) !important; }
+[data-ui-scope][data-ui-scope] button.gtab svg, [data-ui-scope][data-ui-scope] button.chip svg { color: var(--text-dim); }
+[data-ui-scope][data-ui-scope] button.gtab.on, [data-ui-scope][data-ui-scope] button.chip.on { color: var(--on-accent); }
+[data-ui-scope][data-ui-scope] button.gtab.on svg, [data-ui-scope][data-ui-scope] button.chip.on svg { color: var(--on-accent); }
+[data-ui-scope][data-ui-scope] button.gtab.on .badge { background: var(--on-accent); color: var(--c-action); }
+
+/* Create Event wears a hard-coded blue-slate palette of its own; it takes the active theme's tokens instead */
+[data-ui-scope][data-ui-scope] .create-convoy-panel.create-convoy-panel {
+  --card-bg: var(--c-panel); --tablet-panel: var(--c-panel); --tablet-panel-alt: var(--c-base);
+  --doctrine-bar-bg: var(--c-panel); --doctrine-card-bg: var(--c-panel); --doctrine-card-hover: var(--c-raised);
+  --steps-bg: var(--c-panel); --input-bg: var(--c-base); --input-bg-hover: var(--c-base); --input-bg-focus: var(--c-base);
+  --input-border: var(--tablet-border-strong); --input-border-hover: var(--tablet-border-hover); --tablet-border: var(--c-line);
+  border-color: var(--c-line); box-shadow: none;
+}
+[data-ui-scope][data-ui-scope] .create-convoy-panel .panel-header { background: var(--c-panel); border-bottom-color: var(--c-line); }
+
+/* ── Block 6: the small row buttons (route / zone / spawn editors: Teleport, Change #, + Before / After, Set Position, Up, Down, Delete) ──
+   one look for all of them (the soft one from block 2); only Delete is red. They sit in a tight row, so they keep their compact size. */
+[data-ui-scope][data-ui-scope] :is(.icon-btn, .icon-btn-mini).icon-btn-text,
+[data-ui-scope][data-ui-scope] :is(.icon-btn, .icon-btn-mini) { font-weight: 600; }
+
+/* the window frame: the flat veil only — the old blue radial wash under it is gone */
+[data-ui-scope][data-ui-scope] .frame { background-image: var(--frame-shade-img, none) !important; }
+
+/* ── Block 7: table headings — every table in both tablets: a raised band, bold type one step larger than the cells, the theme colour as the rule under it ──
+   !important is needed because several pages carry their own header rules (.excel-header-row, .c-date ...)
+   (<th> in any table, and the div-built heads of Saved Routes and the Container Wars spot lists) */
+[data-ui-scope][data-ui-scope] table :is(thead, tbody, tfoot) th,
+[data-ui-scope][data-ui-scope] :is(.table-head, .row-head) {
+  background: var(--c-raised) !important;
+  color: var(--text-main) !important;
+  font-size: var(--fs-small) !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+  letter-spacing: 0.01em !important;
+  border-bottom: 2px solid var(--c-action) !important;
+}
+[data-ui-scope][data-ui-scope] table :is(thead, tbody, tfoot) th { height: 40px; white-space: nowrap; }
+[data-ui-scope][data-ui-scope] table th :is(button, a, span, svg, i) { color: inherit; font: inherit; text-transform: inherit; letter-spacing: inherit; }
+
+/* ── Block 8: type + status tags (ui/badges.js): one solid size for every table ── */
+[data-ui-scope][data-ui-scope] .tag {
+  display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border: 1px solid transparent;
+  border-radius: var(--r-tag); font-size: var(--fs-meta); font-weight: 600; letter-spacing: 0; text-transform: none; white-space: nowrap; flex-shrink: 0;
+}
+
+/* ── Block 9: pagers — the Rows box, the page buttons and the current page are real, visible boxes on every table of both tablets ──
+   (TablePager's .tp-*, Manage Events' .ev-page-*, Announcements' .ann-pg-*, Saved Routes' .pager-*) */
+[data-ui-scope][data-ui-scope] :is(.tp-btn, .ev-page-btn, .ann-pg-btn, .pager-btn) {
+  min-width: 34px; height: 34px; padding: 0 10px; display: inline-flex; align-items: center; justify-content: center; gap: 2px;
+  background: var(--btn-soft, var(--c-raised)) !important; border: 1px solid var(--btn-soft-line, var(--c-line)) !important; border-radius: var(--r-ctl) !important;
+  color: var(--text-main) !important; font-size: var(--fs-emph); font-weight: 700; line-height: 1;
+}
+[data-ui-scope][data-ui-scope] :is(.tp-btn, .ev-page-btn, .ann-pg-btn, .pager-btn):hover:not(:disabled) { background: var(--btn-soft-hover, var(--c-hover)) !important; color: var(--text-main) !important; }
+[data-ui-scope][data-ui-scope] :is(.tp-btn, .ev-page-btn, .ann-pg-btn, .pager-btn):disabled { opacity: 0.4; background: var(--c-raised) !important; border-color: var(--c-line) !important; }
+[data-ui-scope][data-ui-scope] :is(.tp-btn, .ev-page-btn, .ann-pg-btn, .pager-btn) :is(svg, i, span) { color: inherit; }
+/* the current page: the theme colour, solid */
+[data-ui-scope][data-ui-scope] :is(.tp-current, .ev-page-current, .ann-pg-info, .pager-info) {
+  min-width: 70px; height: 34px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; white-space: nowrap;
+  background: var(--c-action) !important; border: 1px solid var(--c-action) !important; border-radius: var(--r-ctl) !important;
+  color: var(--on-accent) !important; font-size: var(--fs-small); font-weight: 700;
+}
+[data-ui-scope][data-ui-scope] :is(.tp-current, .ev-page-current, .ann-pg-info, .pager-info) b { color: inherit; }
+/* the Rows box */
+[data-ui-scope][data-ui-scope] :is(.tp-size select, .pager-size) {
+  height: 34px; padding: 0 10px; background: var(--btn-soft, var(--c-raised)) !important; border: 1px solid var(--btn-soft-line, var(--c-line)) !important;
+  border-radius: var(--r-ctl) !important; color: var(--text-main) !important; font-weight: 700; font-size: var(--fs-small);
+}
+[data-ui-scope][data-ui-scope] .tp-size > span { color: var(--text-main); font-weight: 700; }
+
+/* ── Block 10: the "something new" dot on a tab (ui/newDots.js) ── a small solid dot in the corner, ringed in the surface colour so it reads on any tab */
+[data-ui-scope][data-ui-scope] :is(.gtab, .chip, .nav-tab, .gt-tab, .mode-tab) { position: relative; }
+[data-ui-scope][data-ui-scope] .new-dot {
+  position: absolute; top: 5px; right: 6px; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--c-action); border: 2px solid var(--c-base, #050505); box-sizing: content-box; pointer-events: none;
+}

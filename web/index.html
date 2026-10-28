@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" style="background:transparent!important;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova Convoy</title>
+    <!-- FiveM NUI black-box flash fix: inline transparency before the bundle paints -->
+    <style>
+      html, body { background: transparent !important; margin: 0; padding: 0; overflow: hidden; }
+    </style>
+    <!-- Instrument Sans carries the whole interface: regular width for copy,
+         data and controls; its own width axis (font-stretch ~88%) for headings,
+         big numbers and HUD titles — one family, no separate "tech" display
+         face. Rajdhani stays only for the AIRDROP crate marker's branding. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap"
+    />
+  </head>
+  <body style="background:transparent!important;">
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

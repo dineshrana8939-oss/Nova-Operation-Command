@@ -1,0 +1,143 @@
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes'
+
+author 'Dinesh'
+description 'Operations Hub — configurable convoy/hot cargo/gang airdrop event system for Qbox/QB-Core/ESX'
+
+ui_page 'html/index.html'
+
+shared_scripts {
+    '@ox_lib/init.lua',
+    'shared/command_registry.lua',
+    'config/config.lua',
+    'config/prop_list.lua',
+    'shared/gantry.lua',
+    'shared/zone_spawn.lua',
+}
+
+client_scripts {
+    'shared/html.lua',
+    'client/modules/notify.lua',
+    'client/modules/sound.lua',
+    'bridge/inventory_client.lua',
+    'client/modules/draw_util.lua',
+    'client/modules/roles.lua',
+    'client/modules/key_help.lua',
+    'client/modules/staff_tag.lua',
+    'client/modules/target_util.lua',
+    'client/modules/world_peds.lua',
+    'client/modules/showroom.lua',
+    'client/modules/npc_relationships.lua',
+    'client/modules/tablet.lua',
+    'client/modules/route_editor.lua',
+    'client/modules/route_recorder.lua',
+    'client/modules/zone_recorder.lua',
+    'client/modules/runtime_client.lua',
+    'client/modules/convoy_debug.lua',
+    'client/modules/event_debug.lua',
+    'client/modules/checkpoint_beacon.lua',
+    'client/modules/reward_announce.lua',
+    'client/modules/live_panel.lua',
+    'client/modules/ped_menu.lua',
+    'client/modules/equipment.lua',
+    'client/modules/escort_shop.lua',
+    'client/modules/start_peds.lua',
+    'client/modules/driveby.lua',
+    'client/modules/turret_restriction.lua',
+    'client/modules/minigames.lua',
+    'client/modules/rally_race.lua',
+    'client/modules/token_vendor.lua',
+    'client/modules/race_vehicle_peds.lua',
+    'client/modules/tdm.lua',
+    'client/modules/crackdown.lua',
+    'client/modules/hook_rope.lua',
+    'client/modules/container_wars_fx.lua',
+    'client/modules/container_wars.lua',
+    'client/modules/harbour_placer.lua',
+    'client/modules/crane_planner.lua',
+    'client/modules/prop_placer.lua',
+    'client/modules/practice_range.lua',
+    'client/modules/scoreboard.lua',
+    'client/modules/crosshair.lua',
+    'client/modules/civilian_registration.lua',
+    'client/modules/car_owner.lua',
+    'client/modules/leader_talk.lua',
+    'client/modules/territory.lua',
+    'client/modules/character_guard.lua',
+}
+
+server_scripts {
+    '@oxmysql/lib/MySQL.lua',
+    'server/modules/test_run.lua',   -- first: it wraps TriggerClientEvent for every file loaded after it
+    'bridge/init.lua',
+    'bridge/banking.lua',
+    'bridge/vehicles.lua',
+    'bridge/inventory.lua',
+    'server/modules/db.lua',
+    'server/modules/user_permissions.lua',
+    'server/modules/staff_tag.lua',
+    'server/modules/compat.lua',
+    'server/modules/harbour_store.lua',
+    'server/modules/event_props.lua',
+    'server/modules/pdf_generator.lua',
+    'server/modules/report_links.lua',
+    'server/modules/discord_log.lua',
+    'server/modules/gang_service.lua',
+    'server/modules/territory_geo.lua',
+    'server/modules/gang_xp.lua',
+    'server/modules/auction_core.lua',
+    'server/modules/reward_service.lua',
+    'server/modules/tdm_rewards.lua',
+    'server/modules/report_builder.lua',
+    'server/modules/npc_manager.lua',
+    'server/modules/airdrop_locations.lua',
+    'server/modules/convoy_manager.lua',
+    'server/modules/saved_routes.lua',
+    'server/modules/container_wars_runtime.lua',
+    'server/modules/convoy_runtime.lua',
+    'server/modules/convoy_debug.lua',
+    'server/modules/event_debug.lua',
+    'server/modules/tdm_runtime.lua',
+    'server/modules/tournament_engine.lua',
+    'server/modules/tournament.lua',
+    'server/modules/scheduler.lua',
+    'server/modules/territory.lua',
+    'server/modules/crackdown_runtime.lua',
+    'server/modules/territory_auction.lua',
+    'server/modules/territory_war.lua',
+    'server/modules/territory_callbacks.lua',
+    'server/modules/equipment.lua',
+    'server/modules/civilian_service.lua',
+    'server/modules/callbacks.lua',
+    'server/modules/car_owner.lua',
+    'server/modules/world_peds.lua',
+    'server/modules/token_vendor.lua',
+    'server/modules/race_vehicles.lua',
+    'server/modules/activity.lua',
+    'server/modules/sound_test.lua',
+    'server/modules/practice_range.lua',
+    'server/main.lua',
+}
+
+files {
+    'html/index.html',
+    'html/**/*',
+    'images/**/*',
+    'sounds/*',
+    'bridge/qbx.lua',
+    'bridge/qbcore.lua',
+    'bridge/esx.lua',
+    'bridge/gangs/custom.lua',
+    'bridge/banking/renewed.lua',
+    'bridge/banking/custom.lua',
+    'bridge/vehicles/custom.lua',
+    'stream/*.ytd',
+    'stream/*.yft',
+}
+
+-- DISABLED: data/weapons.meta patched ~50 vanilla weapons with a name + group only. A WEAPONINFO_FILE_PATCH entry that
+-- replaces a weapon with a stripped-down CWeaponInfo can crash the game client, so it is no longer loaded. The file is
+-- kept for reference only. (Pistols / SMGs still drive-by; a rifle in a vehicle follows the game's own rules again.)
+-- files { 'data/weapons.meta' }
+-- data_file 'WEAPONINFO_FILE_PATCH' 'data/weapons.meta'

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CWeaponInfoBlob>
+  <SlotNavigateOrder />
+  <SlotBestOrder />
+  <TintSpecValues />
+  <FiringPatternAliases />
+  <UpperBodyFixupExpressionData />
+  <AimingInfos />
+  <Infos>
+    <Item>
+      <Infos>
+    <!-- Rifles -->
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_CARBINERIFLE</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_CARBINERIFLE_MK2</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_ASSAULTRIFLE</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_ASSAULTRIFLE_MK2</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_SPECIALCARBINE</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_SPECIALCARBINE_MK2</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_ADVANCEDRIFLE</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_COMPACTRIFLE</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_BULLPUPRIFLE</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_BULLPUPRIFLE_MK2</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_MILITARYRIFLE</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_HEAVYRIFLE</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_TACTICALRIFLE</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+
+    <!-- Submachine Guns (SMGs) -->
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_MICROSMG</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_SMG</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_SMG_MK2</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_ASSAULTSMG</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_COMBATPDW</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_MACHINEPISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_MINISMG</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_GUSENBERG</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+
+    <!-- Pistols & Handguns -->
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_PISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_PISTOL_MK2</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_COMBATPISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_APPISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_PISTOL50</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_SNSPISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_SNSPISTOL_MK2</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_HEAVYPISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_VINTAGEPISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_MARKSMANPISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_REVOLVER</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_REVOLVER_MK2</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_DOUBLEACTION</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_CERAMICPISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_NAVYREVOLVER</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_GADGETPISTOL</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+
+    <!-- Compact Shotguns -->
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_SAWNOFFSHOTGUN</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_DBSHOTGUN</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+    <Item type="CWeaponInfo">
+      <Name>WEAPON_AUTOSHOTGUN</Name>
+      <Group>GROUP_PISTOL</Group>
+    </Item>
+      </Infos>
+    </Item>
+  </Infos>
+</CWeaponInfoBlob>
